@@ -1,0 +1,188 @@
+* {padding:0; margin:0;}
+
+.banner-wrap {
+    position: relative;
+    width: 1000px;
+    height: 300px;
+}
+
+.rolling>div {
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    transition: .5s linear;
+}
+
+/**
+*버튼
+*/
+.btn {
+    width: 30px;
+    height: 30px;
+    background-color: gray;
+    border-radius: 50%;
+    text-align: center;
+    cursor: pointer;
+}
+
+.btn.left {
+    position: absolute;
+    top: 50%;
+    left: 40%;
+    z-index: 11;
+    margin-top: -15px;
+}
+
+.btn.right {
+    position: absolute;
+    top: 50%;
+    right: 40%;
+    z-index: 11;
+    margin-top: -15px;
+}
+
+.active {
+    transform: scale(1);
+}
+
+.rolling>div:not(.active) {
+    transform: scale(0.8);
+}
+
+.rolling>div:last-child {
+    transform: scale(0.6);
+}
+
+.rolling>div:first-child {
+    transform: scale(0.6);
+}
+
+.default-0 {
+    top: 0;
+    left: 0;
+    z-index: 8;
+}
+
+.default-1 {
+    top: 0;
+    left: 15%;
+    z-index: 9;
+}
+
+.default-2 {
+    top: 0;
+    left: 35%;
+    z-index: 10;
+}
+
+.default-3 {
+    top: 0;
+    left: 55%;
+    z-index: 9;
+}
+
+.default-4 {
+    top: 0;
+    left: 70%;
+    z-index: 8;
+}
+
+.rolling .left-0 {
+    animation: left-0 .5s;
+    z-index: 6;
+}
+
+.rolling .left-1 {
+    animation: left-1 .5s;
+    z-index: 8;
+}
+
+.rolling .left-2 {
+    animation: left-2 .5s;
+    z-index: 10;
+}
+
+.rolling .left-3 {
+    animation: left-3 .5s;
+    z-index: 9;}
+
+.rolling .left-4 {
+    animation: left-4 .5s;
+    z-index: 7;
+}
+
+@keyframes left-0 {
+    0%   {left: 15%;}
+    100% {left: 0;}
+}
+
+@keyframes left-1 {
+    0%   {left: 35%;}
+    100% {left: 15%;}
+}
+
+@keyframes left-2 {
+    0%   {left: 55%;}
+    100% {left: 35%;}
+}
+
+@keyframes left-3 {
+    0%   {left: 70%;}
+    100% {left: 55%;}
+}
+
+@keyframes left-4 {
+    0%   {left: 0;}
+    100% {left: 70%;}
+}
+
+.rolling .right-0 {
+    animation: right-0 .5s;
+    z-index: 7;
+}
+
+.rolling .right-1 {
+    animation: right-1 .5s;
+    z-index: 9;
+}
+
+.rolling .right-2 {
+    animation: right-2 .5s;
+    z-index: 10;
+}
+
+.rolling .right-3 {
+    animation: right-3 .5s;
+    z-index: 8;
+}
+
+.rolling .right-4 {
+    animation: right-4 .5s;
+    z-index: 6;
+}
+
+@keyframes right-0 {
+    0%   {left: 70%;} 
+    100% {left: 0px;}
+}
+
+@keyframes right-1 {
+    0%   {left: 0px;}
+    100% {left: 15%;}
+}
+
+@keyframes right-2 {
+    0%   {left: 15%;} 
+    100% {left: 35%;}
+}
+
+@keyframes right-3 {
+    0%   {left: 35%;} 
+    100% {left: 55%;}
+}
+
+@keyframes right-4 { 
+    0%   {left: 55%;} 
+    100% {left: 70%;}
+}

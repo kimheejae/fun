@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>simple rotate banner</title>
+<script src='./zepto/zepto.js'></script>
+<script src='./zepto/fx.js'></script>
+<link rel="stylesheet" href="./style.css" />
+</head>
+
+<body> 
+<div class='banner-wrap'>
+    <div class='rolling'>
+    	<div id='banner1' style='background-color:#3F48CC;' class='default-0' onclick='selectMove(this);'></div>
+        <div id='banner2' style='background-color:#FF0600;' class='default-1' onclick='selectMove(this);'></div>
+        <div id='banner3' style='background-color:#22B14C;' class='default-2 active' onclick='selectMove(this);'></div>
+        <div id='banner4' style='background-color:#F6FF00;' class='default-3' onclick='selectMove(this);'></div>
+        <div id='banner5' style='background-color:#A349A4;' class='default-4' onclick='selectMove(this);'></div>
+    </div>
+    <div class='btn left' onclick='move("left");'><</div>
+    <div class='btn right' onclick='move("right");'>></div>
+</div>
+
+<script>
+
+/**
+*선택이동
+*/
+function selectMove(obj){
+
+    var child = obj;
+    var parent = obj.parentNode;
+    var index = Array.prototype.indexOf.call(parent.children, child); //클릭한 요소의 위치값
+    var movenum=2-index; //가운데 2기준 이동해야값
+
+    if(movenum <0){
+        move("left");
+        for(var i=1; i < Math.abs(movenum); i++){
+            setTimeout(function(){ move("left");},500);
+        }
+    }
+
+    if(movenum >0){
+        move("right");
+        for(var i=1; i < movenum; i++){
+            setTimeout(function(){ move("right");},500);
+        }
+    }
+}
+
+
+/**
+*좌우이동
+*active = left,right
+*/
+function move(active){
+
+    if(active=='right'){
+        $('.rolling>div:last-child').prependTo($('.rolling'))
+
+        $('.rolling div').eq(0).attr('class','right-0').animate({left:'0'},0);
+        $('.rolling div').eq(1).attr('class','right-1').animate({left:'15%'},0);
+        $('.rolling div').eq(2).attr('class','right-2').animate({left:'35%'},0);
+        $('.rolling div').eq(3).attr('class','right-3').animate({left:'55%'},0); 
+        $('.rolling div').eq(4).attr('class','right-4').animate({left:'70%'},0); 
+    } else if(active=='left'){
+        $('.rolling>div:first-child').appendTo($('.rolling'))
+
+        $('.rolling div').eq(0).attr('class','left-0').animate({left:0},0);
+        $('.rolling div').eq(1).attr('class','left-1').animate({left:'15%'},0);
+        $('.rolling div').eq(2).attr('class','left-2').animate({left:'35%'},0);
+        $('.rolling div').eq(3).attr('class','left-3').animate({left:'55%'},0); 
+        $('.rolling div').eq(4).attr('class','left-4').animate({left:'70%'},0);
+    }
+
+    $('.rolling div').removeClass('active');
+    $('.rolling div').eq(2).addClass('active');
+}
+
+/**
+*auto rolling
+*/
+Checker = true;
+function timer(){
+
+    $('.banner-wrap').mouseenter(function(){
+        Checker = false;  
+    }).mouseleave(function(){
+        Checker = true; 
+    }); 
+
+    if(Checker) {
+        setTimeout(function(){
+            move("right");
+        },0) 
+    }
+    setTimeout(function() { timer() },2000); //2초마다 롤링
+}
+
+Zepto(function(){
+    setTimeout(function() { timer() },2000); //2초후 시작
+});
+
+</script>
+</body>
+
+</html> 
